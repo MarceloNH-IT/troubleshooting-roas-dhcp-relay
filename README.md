@@ -13,7 +13,10 @@
 ## 🗺️ Arquitectura y Topología de Red
 La infraestructura consta de un **Servidor DHCP Central (R1)** conectado mediante un enlace WAN a un **Router de Sucursal (R2)**. Este último utiliza la técnica **Router-on-a-Stick (ROAS)** para enrutar el tráfico de las VLANs 10 y 20 que provienen del **Switch de Acceso (S1)**.
 
-**[📸 INSERTAR IMAGEN AQUÍ: Captura de la topología general de Packet Tracer]**
+![Topología de Red ROAS y DHCP Relay](./Topologia.jpg)
+
+*(Nota: Configuración base del Servidor DHCP Central)*
+![Configuración DHCP Central](./DHCP-CENTRAL.jpg)
 
 ---
 
@@ -24,10 +27,11 @@ Para aislar el problema y encontrar la causa raíz (Root Cause), se aplicó un e
 ### Paso 1: Verificación de Capa 2 (Switching y VLANs)
 Primero se descartó una mala configuración en los puertos de acceso o en el enlace troncal del switch de la sucursal.
 * **Comando:** `S1_Sucursal# show vlan brief`
-  * *Resultado:* Los puertos `Fa0/10` y `Fa0/20` están correctamente asignados a la VLAN 10 (Admin) y VLAN 20 (Operaciones).
 * **Comando:** `S1_Sucursal# show interfaces trunk`
-  * *Resultado:* El puerto `Fa0/1` (uplink hacia el router) opera correctamente en modo de encapsulamiento 802.1Q.
-* **Conclusión Nivel 2:** La capa de Switching funciona sin errores. El problema está en el enrutamiento.
+
+![Verificación de Capa 2 en Switch](./Swicht-S1.jpg)
+
+* **Conclusión Nivel 2:** La capa de Switching funciona sin errores. Los puertos están en las VLANs correctas y el enlace troncal opera en modo 802.1Q. El problema reside en el enrutamiento.
 
 ### Paso 2: Verificación de Capa 3 (Inter-VLAN Routing)
 Dado que el Servidor DHCP está en una red remota, el Router 2 debe actuar como agente de retransmisión (*DHCP Relay Agent*). Se inspeccionaron las subinterfaces lógicas:
@@ -35,7 +39,9 @@ Dado que el Servidor DHCP está en una red remota, el Router 2 debe actuar como 
 
 **⚠️ Hallazgo (Root Cause Analysis):**
 Al revisar la subinterfaz `GigabitEthernet0/1.20` (Gateway de la VLAN 20), se detectó la ausencia crítica del comando `ip helper-address`. 
-Al no estar este parámetro, el router frena por defecto los paquetes *Broadcast* (peticiones DHCP) de la PC de Operaciones, impidiendo que lleguen a la IP del Servidor Central (`10.0.0.1`). La subinterfaz de Administración (`GigabitEthernet0/1.10`) sí tenía configurado este agente, explicando por qué no presentaban fallas.
+Al no estar este parámetro, el router frena por defecto los paquetes *Broadcast* (peticiones DHCP) de la PC de Operaciones, impidiendo que lleguen a la IP del Servidor Central (`10.0.0.1`). 
+
+![Análisis de Causa Raíz en Router de Sucursal](./R2-Sucursal.jpg)
 
 ---
 
