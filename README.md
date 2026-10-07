@@ -77,6 +77,9 @@ Se comprobó la estabilidad del enrutamiento ROAS enviando paquetes ICMP hacia u
 Estado del Ticket: CERRADO Y DOCUMENTADO 🟢
 
 ------------------------------
+📸 Trobelshoting ![Trobelshoting](./Trobelshoting.jpg)
+
+
 💻 TÍTULO Y ENCABEZADO
 TÍTULO PRINCIPAL: TROUBLESHOOTING: ROAS & DHCP RELAY
 Subtítulo: Diagnóstico y resolución de fallas de asignación IP en redes divididas por VLANs utilizando un servidor centralizado.
