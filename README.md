@@ -63,17 +63,15 @@ R2_Sucursal# write memory
 ✅ Verificación y Pruebas Post-Resolución
 Una vez aplicado el parche de configuración, se validó la mitigación del incidente directamente desde el equipo del usuario final.
 
-1. Obtención de Direccionamiento (DHCP Request)
-Se forzó una renovación de la interfaz de red en la PC_Operaciones. El equipo logró comunicarse exitosamente con el Servidor DHCP remoto, abandonando la IP APIPA y recibiendo los parámetros correctos de su segmento (192.168.20.11).
+### 1. Obtención de Direccionamiento (DHCP Request)
+Se forzó una renovación de la interfaz de red en la `PC_Operaciones`. El equipo logró comunicarse exitosamente con el Servidor DHCP remoto, abandonando la IP APIPA y recibiendo los parámetros correctos de su segmento (`192.168.20.11`).
 
-[📸 PC-Admin ![Ping-Sin-perdida](./PC-Admin.jpg)" con la IP 192.168.20.11]
+![DHCP Request Exitoso](./PC-Admin.jpg)
 
-
-2. Conectividad End-to-End (ICMP Ping)
+### 2. Conectividad End-to-End (ICMP Ping)
 Se comprobó la estabilidad del enrutamiento ROAS enviando paquetes ICMP hacia una PC de otra red (VLAN 10). La tabla ARP resolvió la dirección y los paquetes llegaron con un 0% de pérdida.
 
-[📸 PC-Operaciones ![Ping-Sin-perdida](./Ping-Sin-perdida.jpg)" con la IP 192.168.20.11]: Captura de la ventana del Command Prompt mostrando el segundo ping exitoso (Sent = 4, Received = 4, Lost = 0)]
-
+![Ping Sin Pérdida](./Ping-Sin-perdida.jpg)
 Estado del Ticket: CERRADO Y DOCUMENTADO 🟢
 
 ------------------------------
