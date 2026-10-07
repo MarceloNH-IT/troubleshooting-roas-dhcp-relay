@@ -1,4 +1,5 @@
 # troubleshooting-roas-dhcp-relay
+
 # 🛠️ Resolución de Incidentes (Troubleshooting): Inter-VLAN Routing (ROAS) y DHCP Relay Agent
 
 ## 📋 Contexto y Ticket de Soporte (Gestión de Incidentes)
@@ -66,12 +67,12 @@ Una vez aplicado el parche de configuración, se validó la mitigación del inci
 Se forzó una renovación de la interfaz de red en la PC_Operaciones. El equipo logró comunicarse exitosamente con el Servidor DHCP remoto, abandonando la IP APIPA y recibiendo los parámetros correctos de su segmento (192.168.20.11).
 
 [📸 PC-Admin ![Ping-Sin-perdida](./PC-Admin.jpg)" con la IP 192.168.20.11]
-[📸 PC-Operaciones ![Ping-Sin-perdida](./Ping-Sin-perdida.jpg)" con la IP 192.168.20.11]
+
 
 2. Conectividad End-to-End (ICMP Ping)
 Se comprobó la estabilidad del enrutamiento ROAS enviando paquetes ICMP hacia una PC de otra red (VLAN 10). La tabla ARP resolvió la dirección y los paquetes llegaron con un 0% de pérdida.
 
-[📸 INSERTAR IMAGEN AQUÍ: Captura de la ventana del Command Prompt mostrando el segundo ping exitoso (Sent = 4, Received = 4, Lost = 0)]
+[📸 PC-Operaciones ![Ping-Sin-perdida](./Ping-Sin-perdida.jpg)" con la IP 192.168.20.11]: Captura de la ventana del Command Prompt mostrando el segundo ping exitoso (Sent = 4, Received = 4, Lost = 0)]
 
 Estado del Ticket: CERRADO Y DOCUMENTADO 🟢
 
