@@ -76,6 +76,88 @@ Se comprobó la estabilidad del enrutamiento ROAS enviando paquetes ICMP hacia u
 
 Estado del Ticket: CERRADO Y DOCUMENTADO 🟢
 
+------------------------------
+💻 TÍTULO Y ENCABEZADO
+TÍTULO PRINCIPAL: TROUBLESHOOTING: ROAS & DHCP RELAY
+Subtítulo: Diagnóstico y resolución de fallas de asignación IP en redes divididas por VLANs utilizando un servidor centralizado.
+
+🖧 SECCIÓN: TOPOLOGÍA (Datos para los recuadros)
+R1 (DHCP Central): G0/0 -> 10.0.0.1/30
+
+R2 (Router ROAS): G0/0 -> 10.0.0.2/30
+
+VLAN 10 (Admin): 192.168.10.0/24 (Gateway: 192.168.10.1)
+
+VLAN 20 (Oper): 192.168.20.0/24 (Gateway: 192.168.20.1) - ¡Falla APIPA!
+
+1️⃣ RECUADRO 1: DIAGNÓSTICO (CAUSA RAÍZ)
+Título: 1. IDENTIFICAR FALLA LÓGICA
+Texto/Código:
+
+Verificar subinterfaces en router de sucursal:
+R2> enable
+R2# show running-config
+
+! Hallazgo en G0/1.20: 
+! Ausencia de configuración DHCP Relay.
+! Los paquetes Broadcast son descartados.
+
+2️⃣ RECUADRO 2: APLICAR SOLUCIÓN (IP HELPER)
+Título: 2. CONFIGURAR AGENTE RELAY
+Texto/Código:
+
+R2# configure terminal
+R2(config)# interface g0/1.20
+R2(config-subif)# ip helper-address 10.0.0.1
+R2(config-subif)# end
+R2# write memory
+
+R2# configure terminal
+R2(config)# interface g0/1.20
+R2(config-subif)# ip helper-address 10.0.0.1
+R2(config-subif)# end
+R2# write memory
+
+3️⃣ RECUADRO 3: SOLICITAR IP (RENOVACIÓN)
+Título: 3. RENOVAR IP EN EL CLIENTE
+Texto:
+
+En PC_Operaciones (VLAN 20):
+
+Desktop > IP Configuration > Static > DHCP
+
+Resultado esperado: El equipo abandona la IP APIPA (169.254.x.x) y muestra DHCP request successful con la IP 192.168.20.11.
+
+4️⃣ RECUADRO 4: VERIFICAR CONECTIVIDAD
+Título: 4. PRUEBA DE ENRUTAMIENTO (ROAS)
+Texto/Código:
+
+PC_Operaciones> ping 192.168.10.11
+
+Resultado esperado:
+4 paquetes enviados, 4 recibidos, 0% loss.
+(Comunicación Inter-VLAN exitosa).
+
+⚠️ RECUADRO ROJO: ERRORES COMUNES
+❌ Olvidar el comando ip helper-address al usar servidores DHCP remotos.
+
+❌ No configurar el puerto del switch que conecta al router en modo Troncal (switchport mode trunk).
+
+❌ Asignar un ID de VLAN incorrecto en el comando encapsulation dot1Q.
+
+✅ RECUADRO VERDE: ¿QUÉ APRENDÍ?
+✔️ Aplicar Troubleshooting estructurado (Bottom-Up).
+
+✔️ Configurar un Agente DHCP Relay para redes remotas.
+
+✔️ Implementar enrutamiento Inter-VLAN (Router-on-a-Stick).
+
+✔️ Diagnosticar e interpretar direccionamientos de falla (APIPA).
+
+🏷️ FOOTER (Igual al anterior)
+M MarceloNH-IT | 🐱 github.com/MarceloNH-IT
+
+
 
 🤝 Conclusión y Contacto 🤝
 
