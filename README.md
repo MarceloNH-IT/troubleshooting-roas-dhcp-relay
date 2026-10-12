@@ -173,7 +173,7 @@ M MarceloNH-IT | 🐱 github.com/MarceloNH-IT
 
 ![Streak Stats](https://github-readme-streak-stats.herokuapp.com/?user=MarceloNH-IT&theme=radical)
 
-![Profile Views](https://komarev.com/ghpvc/?username=MarceloNH-IT&color=blue&style=flat)
+<img src="https://komarev.com/ghpvc/?username=MarceloNH-IT&color=blue&style=flat" alt="Profile Views" />
 
 * **💼 LinkedIn**: [Horacio Marcelo Nuñez](https://linkedin.com) 
 * **📬 Correo Electrónico**: [marcelonh86@gmail.com](marcelonh86@gmail.com)
