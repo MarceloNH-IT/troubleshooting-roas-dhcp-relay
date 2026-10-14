@@ -1,5 +1,8 @@
 # troubleshooting-roas-dhcp-relay
 
+![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=MarceloNH-IT.MarceloNH-IT&style=flat&color=blue)
+
+
 # 🛠️ Resolución de Incidentes (Troubleshooting): Inter-VLAN Routing (ROAS) y DHCP Relay Agent
 
 ## 📋 Contexto y Ticket de Soporte (Gestión de Incidentes)
@@ -173,7 +176,7 @@ M MarceloNH-IT | 🐱 github.com/MarceloNH-IT
 
 ![Streak Stats](https://github-readme-streak-stats.herokuapp.com/?user=MarceloNH-IT&theme=radical)
 
-<img src="https://komarev.com/ghpvc/?username=MarceloNH-IT&color=blue&style=flat" alt="Profile Views" />
+![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=MarceloNH-IT.MarceloNH-IT&style=flat&color=blue)
 
 * **💼 LinkedIn**: [Horacio Marcelo Nuñez](https://linkedin.com) 
 * **📬 Correo Electrónico**: [marcelonh86@gmail.com](marcelonh86@gmail.com)
